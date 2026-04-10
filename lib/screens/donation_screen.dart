@@ -1,5 +1,8 @@
 import 'package:commity_app1/appcolour.dart';
 import 'package:commity_app1/screens/cash_donation_screen.dart' hide AppColors;
+// ===== STEP 1: Import your new screen =====
+
+import 'package:commity_app1/screens/create_charity_screen.dart'; 
 import 'package:commity_app1/screens/good_donation_screen.dart' hide AppColors;
 import 'package:commity_app1/screens/profile_screen.dart';
 import 'package:commity_app1/screens/service_screen.dart';
@@ -19,7 +22,7 @@ class _DonationMainScreenState extends State<DonationMainScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _selectedTab = 0;
-  int _bottomNavIndex = 0; // 0=Home, 1=Services, 2=History, 3=Profile
+  int _bottomNavIndex = 0;
 
   final List<_TabItem> _tabs = [
     _TabItem(icon: Icons.volunteer_activism_rounded, label: 'Cash', color: AppColors.accent),
@@ -56,8 +59,32 @@ class _DonationMainScreenState extends State<DonationMainScreen>
         ],
       ),
       bottomNavigationBar: _buildBottomNav(),
+      // ===== STEP 2: Add the FloatingActionButton to the Scaffold =====
+      // It will only show when the Home tab is selected (_bottomNavIndex == 0)
+      floatingActionButton: _bottomNavIndex == 0 ? _buildFab(context) : null,
     );
   }
+
+  // ===== STEP 3: Create a new widget for the FAB =====
+  Widget _buildFab(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        // Navigate to the create campaign screen
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CreateCampaignLightScreen(),
+          ),
+        );
+      },
+      backgroundColor: AppColors.accent,
+      foregroundColor: Colors.white,
+      tooltip: 'Create Campaign',
+      child: const Icon(Icons.add_rounded, size: 28),
+    );
+  }
+
+
+  // --- Tumche Adhiche Sarva Widgets (No changes below this line) ---
 
   Widget _buildHomeBody() {
     return Column(

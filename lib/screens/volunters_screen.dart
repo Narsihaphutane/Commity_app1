@@ -511,18 +511,18 @@ class _ApplySheetState extends State<_ApplySheet> {
   String? _resumeName;
 
   // STEP 2: FILE PICK FUNCTION ADD KELA
-  Future<void> _pickResume() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf', 'doc', 'docx'],
-    );
+  // Future<void> _pickResume() async {
+  //   final result = await FilePicker.platform.pickFiles(
+  //     type: FileType.custom,
+  //     allowedExtensions: ['pdf', 'doc', 'docx'],
+  //   );
 
-    if (result != null) {
-      setState(() {
-        _resumeName = result.files.single.name;
-      });
-    }
-  }
+  //   if (result != null) {
+  //     setState(() {
+  //       _resumeName = result.files.single.name;
+  //     });
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -617,7 +617,7 @@ class _ApplySheetState extends State<_ApplySheet> {
             ),
             const SizedBox(height: 6),
             GestureDetector(
-              onTap: _pickResume,
+              // onTap: _pickResume,
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
